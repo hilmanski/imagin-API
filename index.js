@@ -50,6 +50,7 @@ app.post("/sites", async(req, res) => {
     res.status(201).json(data)
 });
 
+app.options('/sites/:id', cors())
 app.put('/sites/:id', async (req, res) => {
     //Todo: only owner allowed
     const db = deta.Base('sites');
@@ -65,6 +66,7 @@ app.put('/sites/:id', async (req, res) => {
     res.status(201).json(newItem)
 });
 
+app.options('/sites/theme/:id', cors())
 app.put('/sites/theme/:id', async (req, res) => {
     //Todo: only owner allowed
     const db = deta.Base('sites');
