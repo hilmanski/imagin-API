@@ -8,10 +8,10 @@ const deta_project_key = process.env.deta_project_key
 const deta = Deta(deta_project_key);
 const checkJwt = require('./middleware/checkJWT')
 
-app.use(cors({
-    origin: 'https://imagin.live'
-}));
+app.use(cors());
 app.use(express.json())
+
+app.options('*', cors())
 
 app.post("/users", async (req, res) => {
     const db = deta.Base('users');
@@ -50,7 +50,6 @@ app.post("/sites", async(req, res) => {
     res.status(201).json(data)
 });
 
-app.options('/sites/:id', cors())
 app.put('/sites/:id', async (req, res) => {
     //Todo: only owner allowed
     const db = deta.Base('sites');
@@ -66,7 +65,6 @@ app.put('/sites/:id', async (req, res) => {
     res.status(201).json(newItem)
 });
 
-app.options('/sites/theme/:id', cors())
 app.put('/sites/theme/:id', async (req, res) => {
     //Todo: only owner allowed
     const db = deta.Base('sites');
