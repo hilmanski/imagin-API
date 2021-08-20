@@ -8,7 +8,9 @@ const deta_project_key = process.env.deta_project_key
 const deta = Deta(deta_project_key);
 const checkJwt = require('./middleware/checkJWT')
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://imagin.live'
+}));
 app.use(express.json())
 
 app.post("/users", async (req, res) => {
