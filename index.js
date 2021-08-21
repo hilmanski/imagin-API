@@ -11,7 +11,7 @@ const checkJwt = require('./middleware/checkJWT')
 app.use(cors());
 app.use(express.json())
 
-app.options('*', cors())
+//app.options('*', cors())
 
 app.post("/users", async (req, res) => {
     const db = deta.Base('users');
@@ -61,7 +61,7 @@ app.put('/sites/:id', async (req, res) => {
         'updated_at' : new Date()
     }
 
-    const newItem = await db.update(updatedData);
+    const newItem = await db.update(updatedData, id);
     res.status(201).json(newItem)
 });
 
@@ -76,7 +76,7 @@ app.put('/sites/theme/:id', async (req, res) => {
         'updated_at' : new Date()
     }
 
-    const newItem = await db.update(updatedData);
+    const newItem = await db.update(updatedData, id);
     res.status(201).json(newItem)
 });
 
